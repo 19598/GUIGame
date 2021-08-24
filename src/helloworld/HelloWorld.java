@@ -43,8 +43,10 @@ public class HelloWorld extends Application {
         
         Button btn = new Button();
         Button close = new Button();
+        Button restart = new Button();
         btn.setText("Guess");
         close.setText("Close");
+        restart.setText("Restart");
         btn.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
@@ -58,6 +60,14 @@ public class HelloWorld extends Application {
             primaryStage.close();
         }
         });
+        restart.setOnAction(new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            answer = rnd.nextInt(99) + 1;
+            guesses = 0;
+            userInput.setDisable(false);
+        }
+        });
         
         VBox root = new VBox();
         root.setAlignment(Pos.CENTER);
@@ -65,7 +75,7 @@ public class HelloWorld extends Application {
         hb.setSpacing(20);
         hb.setAlignment(Pos.CENTER);
         
-        hb.getChildren().addAll(btn, close);
+        hb.getChildren().addAll(restart, btn, close);
         
         root.setSpacing(20);
         root.getChildren().addAll(picture, userInput, hb);
